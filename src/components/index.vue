@@ -4,7 +4,7 @@
     <Swipe v-bind:swipe="swipe" /> 
     <Domain v-bind:domain="domain" />
     <Recommend v-bind:recommend="recommend" />
-    <Tabbar v-bind:tabbar="tabbar" />
+    <Tabbar v-bind:tabbar="tabbar" v-bind:selected="selected" />
   </div>
 </template>
 
@@ -109,7 +109,8 @@ export default {
           imgUrl_selected:require("../assets/center_selected.png"),
           title:'我的'
         }
-      ]
+      ],
+      selected:'index'
     };
   }
 };

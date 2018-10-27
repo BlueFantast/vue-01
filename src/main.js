@@ -12,6 +12,7 @@ Vue.use(MintUI);
 
 import Index from "./components/index.vue"
 import Classify from "./components/classify.vue"
+import Seckill from "./components/seckill.vue"
 
 const routes = [{
     path: '/',
@@ -23,6 +24,10 @@ const routes = [{
   {
     path: '/classify',
     component: Classify
+  },
+  {
+    path:'/seckill',
+    component:Seckill
   }
 ]
 
