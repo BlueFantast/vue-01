@@ -4,7 +4,6 @@ import App from './App.vue'
 import MintUI from "mint-ui";
 import 'mint-ui/lib/style.css'
 
-
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
@@ -13,6 +12,8 @@ Vue.use(MintUI);
 import Index from "./components/index.vue"
 import Classify from "./components/classify.vue"
 import Seckill from "./components/seckill.vue"
+import Shopcart from './components/shopcart.vue'
+import Center from "./components/center.vue"
 
 const routes = [{
     path: '/',
@@ -26,8 +27,16 @@ const routes = [{
     component: Classify
   },
   {
-    path:'/seckill',
-    component:Seckill
+    path: '/seckill',
+    component: Seckill
+  },
+  {
+    path: '/shopcart',
+    component: Shopcart
+  },
+  {
+    path: '/center',
+    component: Center
   }
 ]
 
