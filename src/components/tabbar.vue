@@ -58,50 +58,53 @@
 
 <script>
 export default {
-  name: "Tabbar",
+  name: 'Tabbar',
   props: {
-    selected: String
+    selected: {
+      type: String,
+      default: 'index'
+    }
   },
   data: function() {
     return {
-      tabbar:[
+      tabbar: [
         {
-          id:'index',
-          imgUrl:require("../assets/index.png"),
-          imgUrl_selected:require("../assets/index_selected.png"),
-          title:'首页'
+          id: 'index',
+          imgUrl: require('../assets/images/index.png'),
+          imgUrl_selected: require('../assets/images/index_selected.png'),
+          title: '首页'
         },
         {
-          id:'classify',
-          imgUrl:require("../assets/classify.png"),
-          imgUrl_selected:require("../assets/classify_selected.png"),
-          title:'分类'
+          id: 'classify',
+          imgUrl: require('../assets/images/classify.png'),
+          imgUrl_selected: require('../assets/images/classify_selected.png'),
+          title: '分类'
         },
         {
-          id:'seckill',
-          imgUrl:require("../assets/seckill.png"),
-          imgUrl_selected:require("../assets/seckill_selected.png"),
-          title:'清仓'
+          id: 'seckill',
+          imgUrl: require('../assets/images/seckill.png'),
+          imgUrl_selected: require('../assets/images/seckill_selected.png'),
+          title: '清仓'
         },
         {
-          id:'shopcart',
-          imgUrl:require("../assets/shopcart.png"),
-          imgUrl_selected:require("../assets/shopcart_selected.png"),
-          title:'购物车'
+          id: 'shopcart',
+          imgUrl: require('../assets/images/shopcart.png'),
+          imgUrl_selected: require('../assets/images/shopcart_selected.png'),
+          title: '购物车'
         },
         {
-          id:'center',
-          imgUrl:require("../assets/center.png"),
-          imgUrl_selected:require("../assets/center_selected.png"),
-          title:'我的'
+          id: 'center',
+          imgUrl: require('../assets/images/center.png'),
+          imgUrl_selected: require('../assets/images/center_selected.png'),
+          title: '我的'
         }
       ],
-      selected: this.$props.selected
-    }
+      // selected: this.selected
+    };
   },
   methods: {
     goto: function() {
-      this.$data.selected = "classify";
+      this.$data.selected = 'classify';
     }
   }
 };

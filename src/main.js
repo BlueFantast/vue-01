@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import MintUI from "mint-ui";
+import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css'
 
 Vue.config.productionTip = false
 
-Vue.use(VueRouter);
-Vue.use(MintUI);
+Vue.use(VueRouter)
+Vue.use(MintUI)
 
-import Index from "./components/index.vue"
-import Classify from "./components/classify.vue"
-import Seckill from "./components/seckill.vue"
+import Index from './components/index.vue'
+import Classify from './components/classify.vue'
+import Seckill from './components/seckill.vue'
 import Shopcart from './components/shopcart.vue'
-import Center from "./components/center.vue"
+import Center from './components/center.vue'
+import Detail from './components/detail.vue'
 
 const routes = [{
     path: '/',
@@ -37,6 +38,10 @@ const routes = [{
   {
     path: '/center',
     component: Center
+  },
+  {
+    path: '/detail',
+    component: Detail
   }
 ]
 

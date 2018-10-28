@@ -1,7 +1,7 @@
 <template>
     <div class="center">
-        center
-        <Tabbar v-bind:tabbar="tabbar" v-bind:selected="selected" />
+        <Header v-bind="header" />
+        <Tabbar v-bind:selected="selected" />
     </div>
     
 </template>
@@ -14,20 +14,24 @@
 </style>
 
 <script>
+import Header from "./header.vue";
 import Tabbar from "./tabbar.vue";
 
 export default {
   name: "Center",
-  props: {
-    // tabbar: Array,
-    
-  },
+  props: {},
   components: {
+    Header,
     Tabbar
   },
   data: function() {
     return {
-        selected: 'center'
+      selected: "center",
+      header: {
+        title: "个人中心",
+        showBack: true,
+        showMore: true
+      }
     };
   }
 };
