@@ -18,7 +18,7 @@
           :to="item.id"
         >
           <div class="image-container">
-            <img :src="item.imgUrl" alt="" srcset="">
+            <img :src="item.imgUrl" >
           </div>
           <div class="text-container">
             {{item.text}}
@@ -45,9 +45,9 @@ export default {
       selected: 'classify',
       value:'',
       header: {
-        title: '优购商城',
-        showBack: true,
-        showMore: false
+        title: '商品分类',
+        showBack: false,
+        showMore: true
       },
       classify: [
         {
@@ -116,6 +116,10 @@ export default {
 }
 .mint-searchbar-inner {
   border-radius: 5px;
+}
+
+.title{
+  padding: 5px 0 0;
 }
 
 .classify-content {

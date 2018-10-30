@@ -44,7 +44,7 @@
   height: 160px;
   width: 100%;
   position: relative;
-  background-image: url(/img/vip_bg.3747e869.jpg);
+  background-image: url('../assets/images/vip_bg.jpg');
   background-repeat: no-repeat;
   background-position: top left;
   background-size: 100% 145%;
@@ -62,7 +62,7 @@
   height: 60px;
   border: 1px solid white;
   border-radius: 50%;
-  margin: 1.8rem 3.2rem;
+  margin: 1.8rem 2.5rem 0 3.2rem;
   float: left;
 }
 
@@ -93,7 +93,7 @@
   text-align: center;
   border-radius: 3px;
   font-size: 0.8rem;
-  background-color: greenyellow;
+  background-color: #80ce08;
   color: white;
 }
 
@@ -126,6 +126,7 @@
   text-align: center;
   line-height: 1.4rem;
   font-size: 0.8rem;
+  padding: 2px 0 0;
 }
 .stay-take{
     border-left:1px solid rgba(255, 255, 255, 0.3);
@@ -138,7 +139,7 @@
 
 <script>
 export default {
-  name: "Personinfo",
+  name: 'Personinfo',
   props: {},
   components: {},
   data: function() {

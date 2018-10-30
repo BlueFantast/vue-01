@@ -12,13 +12,13 @@
 
 <style scoped>
 .cell {
-  width: 96%;
+  width: 95%;
   height: 3rem;
   border-bottom: 1px solid #eee;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 0 2px 0 0;
+  /* padding: 0 2px 0 0; */
 }
 
 .top {
@@ -31,15 +31,15 @@
 
 .title {
   display: flex;
-  width: 8.4rem;
+  width: 8.2rem;
   height: 100%;
   justify-content: space-between;
   align-items: center;
 }
 
 .icon-title {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
   display: inline-block;
   margin: 0.2rem 0;
 }
@@ -47,7 +47,7 @@
 .title-text {
   display: inline-block;
   width: 6rem;
-  color: gray;
+  /* color: gray; */
 }
 
 .goto {
@@ -69,7 +69,7 @@
 
 <script>
 export default {
-  name: "Cell",
+  name: 'Cell',
   props: {
     id: String,
     title: String,

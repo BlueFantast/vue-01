@@ -37,23 +37,23 @@
 
 .top {
   height: 40px;
-  width: calc(100% - 6px);
+  width: calc(100% - 8px);
   display: flex;
   justify-content: space-between;
-  padding: 0 0 0 6px;
+  padding: 0 0 0 8px;
 }
 
 .title {
   display: flex;
-  width: 6.5rem;
+  width: 6.3rem;
   height: 100%;
   justify-content: space-between;
   align-items: center;
 }
 
 .icon-title {
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   display: inline-block;
   margin: 0.2rem 0;
 }
@@ -84,14 +84,15 @@
   display: inline-block;
 }
 
-.item-num{
-    width: 1.5rem;
+.item-num {
+  width: 100%;
   height: 1.5rem;
   display: inline-block;
   line-height: 1.5rem;
   font-size: 1rem;
   color: #1296db;
   padding: 0 0 5px 0;
+  text-align: center;
 }
 
 .item-title {
@@ -113,7 +114,7 @@
 
 <script>
 export default {
-  name: "Functionnavigate",
+  name: 'Functionnavigate',
   props: {
     id: String,
     title: String,

@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "Recommend",
+  name: 'Recommend',
   props: {
     recommend: Array
   }
@@ -37,7 +37,7 @@ export default {
 
 .list-item{
     width: 100%;
-    height: 6rem;
+    height: 7rem;
     margin: 5px 0;
 }
 </style>

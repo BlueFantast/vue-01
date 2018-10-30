@@ -42,8 +42,11 @@ export default {
       selected: 'center',
       header: {
         title: '个人中心',
-        showBack: true,
+        showBack: false,
         showMore: true
+      },
+      personInfo:{
+        portrait:require('../assets/images/vip.png'),
       },
       orderManage: {
         id: 'orderManage',

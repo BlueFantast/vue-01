@@ -59,7 +59,9 @@
 }
 
 .content-title {
+  height: 2rem;
   border: 1px solid #eee;
+  padding: 5px 0 0;
 }
 
 .goods-container {
@@ -81,7 +83,7 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background-color: rebeccapurple;
+  background-color: #f82b13;
   top: 0;
   left: 1rem;
   font-size: 0.8rem;
@@ -140,12 +142,12 @@
 </style>
 
 <script>
-import Header from "./header.vue";
-import Swipe from "./swipe.vue";
-import Tabbar from "./tabbar.vue";
+import Header from './header.vue';
+import Swipe from './swipe.vue';
+import Tabbar from './tabbar.vue';
 
 export default {
-  name: "Seckill",
+  name: 'Seckill',
   props: {
     // selected:String
   },
@@ -156,48 +158,48 @@ export default {
   },
   data: function() {
     return {
-      selected: "seckill",
+      selected: 'seckill',
       header: {
-        title: "优购商城",
-        showBack: true,
+        title: '限时抢购',
+        showBack: false,
         showMore: true
       },
       swipe: [
-        { imgUrl: require("../assets/images/g1.png") },
-        { imgUrl: require("../assets/images/g2.png") },
-        { imgUrl: require("../assets/images/g1.png") },
-        { imgUrl: require("../assets/images/g2.png") }
+        { imgUrl: require('../assets/images/g1.png') },
+        { imgUrl: require('../assets/images/g2.png') },
+        { imgUrl: require('../assets/images/g1.png') },
+        { imgUrl: require('../assets/images/g2.png') }
       ],
       goodsList: [
         {
-          id:'detail',
-          imgUrl: require("../assets/images/goods1.jpg"),
-          title: "【优购商城】爱华仕双肩包，休闲商务背包",
-          features: ["轻薄体验收纳便捷", "萌萌的挂件", "专注每个细节"],
+          id: 'detail',
+          imgUrl: require('../assets/images/goods1.jpg'),
+          title: '【优购商城】爱华仕双肩包，休闲商务背包',
+          features: ['轻薄体验收纳便捷', '萌萌的挂件', '专注每个细节'],
           price: 199,
           num: 9
         },
         {
-          id:'detail',
-          imgUrl: require("../assets/images/goods1.jpg"),
-          title: "【优购商城】爱华仕双肩包，休闲商务背包",
-          features: ["轻薄体验收纳便捷", "萌萌的挂件", "专注每个细节"],
+          id: 'detail',
+          imgUrl: require('../assets/images/goods1.jpg'),
+          title: '【优购商城】爱华仕双肩包，休闲商务背包',
+          features: ['轻薄体验收纳便捷', '萌萌的挂件', '专注每个细节'],
           price: 199,
           num: 9
         },
         {
-          id:'detail',
-          imgUrl: require("../assets/images/goods1.jpg"),
-          title: "【优购商城】爱华仕双肩包，休闲商务背包",
-          features: ["轻薄体验收纳便捷", "萌萌的挂件", "专注每个细节"],
+          id: 'detail',
+          imgUrl: require('../assets/images/goods1.jpg'),
+          title: '【优购商城】爱华仕双肩包，休闲商务背包',
+          features: ['轻薄体验收纳便捷', '萌萌的挂件', '专注每个细节'],
           price: 199,
           num: 9
         },
         {
-          id:'detail',
-          imgUrl: require("../assets/images/goods1.jpg"),
-          title: "【优购商城】爱华仕双肩包，休闲商务背包",
-          features: ["轻薄体验收纳便捷", "萌萌的挂件", "专注每个细节"],
+          id: 'detail',
+          imgUrl: require('../assets/images/goods1.jpg'),
+          title: '【优购商城】爱华仕双肩包，休闲商务背包',
+          features: ['轻薄体验收纳便捷', '萌萌的挂件', '专注每个细节'],
           price: 199,
           num: 9
         }

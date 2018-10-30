@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "Swipe",
+  name: 'Swipe',
   props: {
     swipe: Array
   },
@@ -36,7 +36,7 @@ export default {
 <style scoped>
 
 #my-swipe {
-  height: 8rem;
+  height: 7rem;
   color: #fff;
   font-size: 30px;
   text-align: center;

@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "Domain",
+  name: 'Domain',
   props: {
     domain: Array
   }
