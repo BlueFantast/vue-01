@@ -7,7 +7,7 @@
                 v-bind:key="index"
                 class="shop">
                 <div class="shop-name">
-                    <input type="checkbox" :checked="shop.selected" name="shopId" :value="shop.shopId"> <span class="name">书包专卖店</span>
+                    <input type="checkbox" v-model="shop.selected" id="shopId" :value="shop.shopId"> <span class="name">书包专卖店</span>
                 </div>
                 <div class="goods-list">
                     <div
@@ -16,7 +16,7 @@
                         :id="goods.goodsId"
                         class="goods-item">
                         <div class="goods-image">
-                            <input type="checkbox" :checked="goods.selected" name="goodsId" :value="goods.goodsId">
+                            <input type="checkbox" v-model="goods.selected" id="goodsId" :value="goods.goodsId">
                             <span class="image">
                                 <img :src="goods.imgUrl" alt="商品图片" >
                             </span>
@@ -195,6 +195,7 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #eee;
+  background-color: white;
 }
 
 .final-price {
@@ -224,10 +225,10 @@
 </style>
 
 <script>
-import Header from "./header.vue";
+import Header from './header.vue';
 
 export default {
-  name: "Shopcart",
+  name: 'Shopcart',
   props: {
     // purchased: Array
   },
@@ -237,65 +238,39 @@ export default {
   data: function() {
     return {
       header: {
-        title: "购物车",
+        title: '购物车',
         showBack: true,
         showMore: true
       },
       purchased: [
         {
-          shopId: "bagStore",
+          shopId: 'bagStore',
           selected: false,
           goodsList: [
             {
-              goodsId: "bag",
+              goodsId: 'bag',
               selected: false,
-              imgUrl: require("../assets/images/goods1.jpg"),
-              title: "爱华仕双肩包，休闲商务背包",
-              describe: ["重量：3.3kg", "颜色：标配版"],
-              price: "100.00",
+              imgUrl: require('../assets/images/goods1.jpg'),
+              title: '爱华仕双肩包，休闲商务背包',
+              describe: ['重量：3.3kg', '颜色：标配版'],
+              price: '100.00',
               count: 1
             },
             {
-              goodsId: "bag",
+              goodsId: 'bag',
               selected: false,
-              imgUrl: require("../assets/images/goods1.jpg"),
-              title: "爱华仕双肩包，休闲商务背包",
-              describe: ["重量：3.3kg", "颜色：标配版"],
-              price: "100.00",
+              imgUrl: require('../assets/images/goods1.jpg'),
+              title: '爱华仕双肩包，休闲商务背包',
+              describe: ['重量：3.3kg', '颜色：标配版'],
+              price: '100.00',
               count: 1
             }
           ],
-          shopTotal: "0.00"
-        },
-        {
-          shopId: "bagStore",
-          selected: false,
-          goodsList: [
-            {
-              goodsId: "bag",
-              selected: false,
-              imgUrl: require("../assets/images/goods1.jpg"),
-              title: "爱华仕双肩包，休闲商务背包",
-              describe: ["重量：3.3kg", "颜色：标配版"],
-              price: "100.00",
-              count: 1
-            },
-            {
-              goodsId: "bag",
-              selected: false,
-              imgUrl: require("../assets/images/goods1.jpg"),
-              title: "爱华仕双肩包，休闲商务背包",
-              describe: ["重量：3.3kg", "颜色：标配版"],
-              price: "100.00",
-              count: 1
-            }
-          ],
-          shopTotal: "0.00"
+          shopTotal: '0.00'
         }
       ],
-      finalPrice:'0.00',
-      count: 0,
-      changeObj: {}
+      checkAll:false,
+      finalPrice:'0.00'
     };
   },
   methods: {
@@ -335,9 +310,26 @@ export default {
   },
   computed: {
     totalNumber: function(count) {
-      return this.firstName + " " + this.lastName;
+      return this.firstName + ' ' + this.lastName;
+    },
+    shopSelected:function() {
+      
     }
   },
-  filters: {}
+  filters: {
+    toString:function(v) {
+      let str = v + '';
+      let arr = str.split('.');
+      if(arr[1]){
+        if(arr[1].length == 1){
+          return str + '0'
+        }else{
+          return str
+        }
+      }else{
+        return str + '.00'
+      }
+    }
+  }
 };
 </script>
