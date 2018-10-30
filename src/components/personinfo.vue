@@ -49,6 +49,7 @@
   background-position: top left;
   background-size: 100% 145%;
   border-bottom: 4px solid #eee;
+  background-color: #26A2FF;
 }
 
 .info-content {
