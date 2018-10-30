@@ -27,9 +27,8 @@ export default {
   width: 100%;
 }
 
-.mint-header{
-  /* background-color: #fff; */
-  /* color: black; */
+.header .mint-header{
+  font-size: 1rem;
 }
 
 </style>

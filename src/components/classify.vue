@@ -30,6 +30,48 @@
   </div>
 </template>
 
+<style>
+#classify {
+  width: 100%;
+  height: 100%;
+}
+
+.mint-searchbar {
+  background-color: rgba(240, 240, 240, 0.5);
+  padding: 12px 10px;
+}
+.mint-search {
+  height: auto;
+}
+.mint-searchbar-inner {
+  border-radius: 5px;
+}
+
+.title{
+  padding: 5px 0 0;
+}
+
+.classify-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.items-container {
+  display: block;
+  width: 32.5%;
+  border: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+  padding: 5px 0 10px;
+}
+
+.items-container img {
+  width: 5rem;
+}
+</style>
+
 <script>
 import Header from './header.vue';
 import Tabbar from './tabbar.vue';
@@ -100,45 +142,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#classify {
-  width: 100%;
-  height: 100%;
-}
-
-.mint-searchbar {
-  background-color: rgba(240, 240, 240, 0.5);
-  padding: 12px 10px;
-}
-.mint-search {
-  height: auto;
-}
-.mint-searchbar-inner {
-  border-radius: 5px;
-}
-
-.title{
-  padding: 5px 0 0;
-}
-
-.classify-content {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.items-container {
-  display: block;
-  width: 32.5%;
-  border: 1px solid #eee;
-  font-size: 0.9rem;
-  color: #333;
-  text-align: center;
-  padding: 5px 0 10px;
-}
-
-.items-container img {
-  width: 5rem;
-}
-</style>

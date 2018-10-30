@@ -39,27 +39,41 @@
                                     <span>￥{{goods.price}}</span>
                                 </div>
                                 <div class="goods-counter">
-                                    <span class="reduce" v-on:click="reduce">-</span>
-                                    <span class="goods-count">{{count}}</span>
-                                    <span class="increase" v-on:click="increase">+</span>
+                                    <span class="reduce" v-on:click="reduce(shop.shopId,goods.goodsId)">-</span>
+                                    <span class="goods-count">{{goods.count}}</span>
+                                    <span class="increase" v-on:click="increase(shop.shopId,goods.goodsId)">+</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="shop-total">
+                  本店总计：<span class="total-price">{{shop.shopTotal}}</span>
+                </div>
             </div>
+        </div>
+        <div class="check-out">
+          <div class="check-all">
+            <input type="checkbox" :checked="checkAll" name="checkAll" :value="checkAll"> <span class="checkAll">全选</span>
+          </div>
+          <div class="final-price">总价：<span class="finalPrice">{{finalPrice}}</span></div>
+          <div class="checkOut">结算</div>
         </div>
     </div>
 </template>
 
 <style scoped>
+.shop {
+  border-bottom: 5px solid #eee;
+  padding: 0 0 4px 0;
+}
 .shop-cart {
   width: 100%;
   height: 100%;
 }
 
 .shop-name {
-  width: 100%;
+  width: calc(100% - 10px);
   height: 2rem;
   line-height: 2rem;
   padding: 0 0 0 10px;
@@ -125,12 +139,14 @@
   width: calc(100% - 20px);
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   padding: 0 20px 0 0;
 }
 .goods-price {
   display: inline-block;
   width: 4rem;
   color: red;
+  font-weight: 600;
   overflow: hidden;
 }
 .goods-counter {
@@ -157,6 +173,53 @@
   text-align: center;
   font-size: 1.5rem;
   color: #26a2ff;
+}
+
+.shop-total {
+  height: 2rem;
+  line-height: 2rem;
+  text-align: right;
+  padding: 0 20px 0 0;
+}
+
+.total-price {
+  color: red;
+}
+
+.check-out {
+  width: 100%;
+  height: 3rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eee;
+}
+
+.final-price {
+  /* width: 6rem; */
+  overflow: hidden;
+  padding: 0 40px 0 0;
+  font-weight: bold;
+}
+.finalPrice{
+  color: red;
+}
+.check-all {
+  width: 5rem;
+  text-align: center;
+}
+.checkAll {
+  padding: 0 0 0 10px;
+}
+.checkOut {
+  width: 5rem;
+  height: 100%;
+  line-height: 3rem;
+  text-align: center;
+  color: white;
+  background-color: red;
 }
 </style>
 
@@ -189,28 +252,92 @@ export default {
               imgUrl: require("../assets/images/goods1.jpg"),
               title: "爱华仕双肩包，休闲商务背包",
               describe: ["重量：3.3kg", "颜色：标配版"],
-              price: 100,
-              num: 1
+              price: "100.00",
+              count: 1
+            },
+            {
+              goodsId: "bag",
+              selected: false,
+              imgUrl: require("../assets/images/goods1.jpg"),
+              title: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              price: "100.00",
+              count: 1
             }
-          ]
+          ],
+          shopTotal: "0.00"
+        },
+        {
+          shopId: "bagStore",
+          selected: false,
+          goodsList: [
+            {
+              goodsId: "bag",
+              selected: false,
+              imgUrl: require("../assets/images/goods1.jpg"),
+              title: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              price: "100.00",
+              count: 1
+            },
+            {
+              goodsId: "bag",
+              selected: false,
+              imgUrl: require("../assets/images/goods1.jpg"),
+              title: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              price: "100.00",
+              count: 1
+            }
+          ],
+          shopTotal: "0.00"
         }
       ],
-      count:0
+      finalPrice:'0.00',
+      count: 0,
+      changeObj: {}
     };
   },
   methods: {
-    reduce:function () {
-      if(this.count <= 0){
-        return
+    reduce: function(shopId, goodsId) {
+      console.log(shopId, goodsId);
+      const purchased = this.$data.purchased;
+      for (let i = 0; i < purchased.length; i++) {
+        const shop = purchased[i];
+        if (shop.shopId == shopId) {
+          const goodsList = shop.goodsList;
+          for (let j = 0; j < goodsList.length; j++) {
+            const goods = goodsList[j];
+            if (goods.goodsId == goodsId) {
+              goods.count--;
+              console.log(goods.count);
+            }
+          }
+        }
       }
-      this.$data.count = this.count - 1
     },
-    increase:function () {
-      this.$data.count = this.count + 1
+    increase: function(shopId, goodsId) {
+      const purchased = this.$data.purchased;
+      for (let i = 0; i < purchased.length; i++) {
+        const shop = purchased[i];
+        if (shop.shopId == shopId) {
+          const goodsList = shop.goodsList;
+          for (let j = 0; j < goodsList.length; j++) {
+            const goods = goodsList[j];
+            if (goods.goodsId == goodsId) {
+              goods.count++;
+              console.log(goods.count);
+            }
+          }
+        }
+      }
     }
   },
-  filters: {
-    
-  }
+  computed: {
+    totalNumber: function(count) {
+      return this.firstName + " " + this.lastName;
+    }
+  },
+  filters: {}
 };
 </script>
