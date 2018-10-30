@@ -26,16 +26,22 @@
                                 {{goods.title}}
                             </div>
                             <div class="goods-describe">
-                                {{goods.describe}}
+                                <span 
+                                  v-for="(des,j) in goods.describe"
+                                  v-bind:key="j"
+                                >
+                                  {{des}}&nbsp;&nbsp;
+                                </span>
+                                
                             </div>
                             <div class="goods-num">
                                 <div class="goods-price">
-                                    ￥{{goods.price}}
+                                    <span>￥{{goods.price}}</span>
                                 </div>
                                 <div class="goods-counter">
-                                    <span class="reduce" v-on="reduce">-</span>
-                                    <span class="goods-count">{{count || 0}}</span>
-                                    <span class="increase" v-on="increase">+</span>
+                                    <span class="reduce" v-on:click="reduce">-</span>
+                                    <span class="goods-count">{{count}}</span>
+                                    <span class="increase" v-on:click="increase">+</span>
                                 </div>
                             </div>
                         </div>
@@ -129,10 +135,28 @@
 }
 .goods-counter {
   display: flex;
-  width: 4rem;
-  height: 1rem;
+  width: 5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
   justify-content: space-between;
   float: right;
+  border: 1px solid #eee;
+}
+
+.reduce {
+  width: 1.5rem;
+  border-right: 1px solid #eee;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #26a2ff;
+}
+
+.increase {
+  width: 1.5rem;
+  border-left: 1px solid #eee;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #26a2ff;
 }
 </style>
 
@@ -164,15 +188,29 @@ export default {
               selected: false,
               imgUrl: require("../assets/images/goods1.jpg"),
               title: "爱华仕双肩包，休闲商务背包",
-              describe: "重量：3.3kg 颜色：标配版",
+              describe: ["重量：3.3kg", "颜色：标配版"],
               price: 100,
               num: 1
             }
           ]
         }
-      ]
+      ],
+      count:0
     };
   },
-  methods: {}
+  methods: {
+    reduce:function () {
+      if(this.count <= 0){
+        return
+      }
+      this.$data.count = this.count - 1
+    },
+    increase:function () {
+      this.$data.count = this.count + 1
+    }
+  },
+  filters: {
+    
+  }
 };
 </script>
