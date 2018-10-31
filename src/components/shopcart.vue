@@ -4,7 +4,8 @@
         <div class="purchased-list">
             <div 
                 v-for="(shop,index) in purchased"
-                v-bind:key="index"
+                v-bind:index="index"
+                v-bind:key="shop.shopId"
                 class="shop">
                 <div class="shop-name">
                     <input type="checkbox" v-model="shop.selected" :id="shop.shopId" v-on:click="checkBoxShop(shop.shopId)" /> <span class="name">{{shop.shopName}}</span>
@@ -271,6 +272,34 @@ export default {
             }
           ],
           shopTotal: 0
+        },
+        {
+          shopId: "bagStore2",
+          shopName: "书包专卖店",
+          selected: false,
+          goodsList: [
+            {
+              goodsId: "bag1",
+              selected: false,
+              imgUrl: require("../assets/images/goods1.jpg"),
+              goodsTitle: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              goodsPrice: 199,
+              goodsCount: 1,
+              goodsTotal: 0
+            },
+            {
+              goodsId: "bag2",
+              selected: false,
+              imgUrl: require("../assets/images/goods1.jpg"),
+              goodsTitle: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              goodsPrice: 199,
+              goodsCount: 1,
+              goodsTotal: 0
+            }
+          ],
+          shopTotal: 0
         }
       ],
       checkAll: false,
@@ -345,7 +374,6 @@ export default {
           let goods = goodsList[j];
           goods.selected = allInput.checked;
         }
-
       }
     }
   },
@@ -356,18 +384,19 @@ export default {
     shopTotal: function(newValue, oldValue) {
       console.log(newValue, oldValue);
       let that = this;
-      let shopId = "bagStore1";
+      // let shopId = "bagStore1";
+      let total = 0;
       let purchased = that.purchased;
-      for (let j = 0; j < purchased.length; j++) {
-        let shop = purchased[j];
-        if (shop.shopId == shopId) {
-          shop.shopTotal = newValue;
-          that.finalPrice = newValue;
-        }
+      for (let i = 0; i < purchased.length; i++) {
+        let shop = purchased[i];
+        // if (shop.shopId == shopId) {
+        shop.shopTotal = newValue[i];
+        total += newValue[i];
+        // that.finalPrice = newValue;
+        // }
       }
-    },
-
-
+      that.finalPrice = total;
+    }
   },
   computed: {
     goodsCount: function() {
@@ -387,32 +416,30 @@ export default {
     },
     shopTotal: function() {
       let that = this;
-      let shopId = "bagStore1";
       let purchased = that.purchased;
-      let total = 0;
-      // let flag = document.getElementById('shopId').checked;
-      let flag = true;
+      // let total = 0;
+      let total = [];
       let flagAll = true;
       for (let i = 0; i < purchased.length; i++) {
-        const shop = purchased[i];
-        if (shop.shopId == shopId) {
-          let goodsList = shop.goodsList;
-          for (let j = 0; j < goodsList.length; j++) {
-            const goods = goodsList[j];
-            if (goods.selected) {
-              total += goods.goodsTotal;
-            } else {
-              flag = false;
-            }
-          }
-          shop.selected = flag;
-          if(!shop.selected){
-            flagAll = false
+        let flag = true;
+        let shop = purchased[i];
+        let goodsList = shop.goodsList;
+        for (let j = 0; j < goodsList.length; j++) {
+          let goods = goodsList[j];
+          if (goods.selected) {
+            // total += goods.goodsTotal;
+            total.push(goods.goodsTotal);
+          } else {
+            flag = false;
           }
         }
+        shop.selected = flag;
+        if (!shop.selected) {
+          flagAll = false;
+        }
         that.checkAll = flagAll;
-        return total;
       }
+      return total;
     }
   },
   filters: {
