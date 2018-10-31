@@ -7,7 +7,7 @@
                 v-bind:key="index"
                 class="shop">
                 <div class="shop-name">
-                    <input type="checkbox" v-model="shop.selected" id="shopId" :value="shop.shopId"> <span class="name">书包专卖店</span>
+                    <input type="checkbox" v-model="shop.selected" id="shopId" :value="shop.shopId"> <span class="name">{{shop.shopName}}</span>
                 </div>
                 <div class="goods-list">
                     <div
@@ -23,7 +23,7 @@
                         </div>
                         <div class="goods-info">
                             <div class="goods-title">
-                                {{goods.title}}
+                                {{goods.goodsTitle}}
                             </div>
                             <div class="goods-describe">
                                 <span 
@@ -36,11 +36,11 @@
                             </div>
                             <div class="goods-num">
                                 <div class="goods-price">
-                                    <span>￥{{goods.price}}</span>
+                                    <span>￥{{goods.goodsPrice | toString}}</span>
                                 </div>
                                 <div class="goods-counter">
                                     <span class="reduce" v-on:click="reduce(shop.shopId,goods.goodsId)">-</span>
-                                    <span class="goods-count">{{goods.count}}</span>
+                                    <span class="goods-count">{{goods.goodsCount}}</span>
                                     <span class="increase" v-on:click="increase(shop.shopId,goods.goodsId)">+</span>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="shop-total">
-                  本店总计：<span class="total-price">{{shop.shopTotal}}</span>
+                  本店总计：<span class="total-price">{{shop.shopTotal | toString}}</span>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
           <div class="check-all">
             <input type="checkbox" :checked="checkAll" name="checkAll" :value="checkAll"> <span class="checkAll">全选</span>
           </div>
-          <div class="final-price">总价：<span class="finalPrice">{{finalPrice}}</span></div>
+          <div class="final-price">总价：<span class="finalPrice">{{finalPrice | toString}}</span></div>
           <div class="checkOut">结算</div>
         </div>
     </div>
@@ -117,7 +117,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* margin: 0 10px 0 0; */
 }
 .goods-title {
   font-size: 0.9rem;
@@ -144,14 +143,11 @@
 }
 .goods-price {
   display: inline-block;
-  width: 4rem;
   color: red;
   font-weight: 600;
-  overflow: hidden;
 }
 .goods-counter {
   display: flex;
-  width: 5rem;
   height: 1.5rem;
   line-height: 1.5rem;
   justify-content: space-between;
@@ -165,6 +161,12 @@
   text-align: center;
   font-size: 1.5rem;
   color: #26a2ff;
+}
+
+.goods-count {
+  display: inline-block;
+  min-width: 2rem;
+  text-align: center;
 }
 
 .increase {
@@ -199,12 +201,11 @@
 }
 
 .final-price {
-  /* width: 6rem; */
   overflow: hidden;
   padding: 0 40px 0 0;
   font-weight: bold;
 }
-.finalPrice{
+.finalPrice {
   color: red;
 }
 .check-all {
@@ -225,10 +226,10 @@
 </style>
 
 <script>
-import Header from './header.vue';
+import Header from "./header.vue";
 
 export default {
-  name: 'Shopcart',
+  name: "Shopcart",
   props: {
     // purchased: Array
   },
@@ -238,39 +239,42 @@ export default {
   data: function() {
     return {
       header: {
-        title: '购物车',
+        title: "购物车",
         showBack: true,
         showMore: true
       },
       purchased: [
         {
-          shopId: 'bagStore',
+          shopId: "bagStore1",
+          shopName:'书包专卖店',
           selected: false,
           goodsList: [
             {
-              goodsId: 'bag',
+              goodsId: "bag1",
               selected: false,
-              imgUrl: require('../assets/images/goods1.jpg'),
-              title: '爱华仕双肩包，休闲商务背包',
-              describe: ['重量：3.3kg', '颜色：标配版'],
-              price: '100.00',
-              count: 1
+              imgUrl: require("../assets/images/goods1.jpg"),
+              goodsTitle: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              goodsPrice: 199,
+              goodsCount: 1,
+              goodsTotal: 0
             },
             {
-              goodsId: 'bag',
+              goodsId: "bag2",
               selected: false,
-              imgUrl: require('../assets/images/goods1.jpg'),
-              title: '爱华仕双肩包，休闲商务背包',
-              describe: ['重量：3.3kg', '颜色：标配版'],
-              price: '100.00',
-              count: 1
+              imgUrl: require("../assets/images/goods1.jpg"),
+              goodsTitle: "爱华仕双肩包，休闲商务背包",
+              describe: ["重量：3.3kg", "颜色：标配版"],
+              goodsPrice: 199,
+              goodsCount: 1,
+              goodsTotal: 0
             }
           ],
-          shopTotal: '0.00'
+          shopTotal: 0
         }
       ],
-      checkAll:false,
-      finalPrice:'0.00'
+      checkAll: false,
+      finalPrice: 0
     };
   },
   methods: {
@@ -285,7 +289,8 @@ export default {
             const goods = goodsList[j];
             if (goods.goodsId == goodsId) {
               goods.count--;
-              console.log(goods.count);
+              goods.goodsTotal = goods.price * goods.count;
+              console.log(goods.count, goods.goodsTotal);
             }
           }
         }
@@ -301,33 +306,121 @@ export default {
             const goods = goodsList[j];
             if (goods.goodsId == goodsId) {
               goods.count++;
-              console.log(goods.count);
+              goods.goodsTotal = goods.price * goods.count;
+              console.log(goods.count, goods.goodsTotal);
             }
           }
         }
       }
     }
   },
-  computed: {
-    totalNumber: function(count) {
-      return this.firstName + ' ' + this.lastName;
+  watch: {
+    goodsCount: function(newValue, oldValue) {
+      console.log(newValue, oldValue);
     },
-    shopSelected:function() {
-      
+    shopTotal: function(newValue, oldValue) {
+      console.log(newValue, oldValue);
+      let that = this;
+      let shopId = "bagStore";
+      let purchased = that.purchased;
+      for (let j = 0; j < purchased.length; j++) {
+        let shop = purchased[j];
+        if (shop.shopId == shopId) {
+          shop.shopTotal = newValue;
+        }
+      }
+    },
+    shopSelected: function(newValue, oldValue) {
+      let shop = document.getElementById("shopId");
+      console.log(newValue, oldValue,'shop: ',shop);
+      let that = this;
+      let shopId = shop.value;//"bagStore"
+      let purchased = that.purchased;
+      // let flag = newValue;
+      for (let j = 0; j < purchased.length; j++) {
+        let shop = purchased[j];
+        if (shop.shopId == shopId) {
+           let goodsList = shop.goodsList;
+           for (let i = 0; i < goodsList.length; i++) {
+             let goods = goodsList[i];
+             goods.selected = newValue;
+           }
+        }
+      }
+    }
+    // 'purchased.goodsList': {
+    //   handler: function(newValue, oldValue) {
+    //     console.log(newValue, oldValue);
+    //   },
+    //   deep: true
+    // }
+  },
+  computed: {
+    shopSelected: function() {
+      let that = this;
+      let shop = document.getElementById("shopId");
+      let shopId = shop.value;
+      let purchased = that.purchased;
+      for (let i = 0; i < purchased.length; i++) {
+        let shop = purchased[i];
+        if (shop.shopId == shopId) {
+          return shop.selected;
+        }
+      }
+    },
+    goodsCount: function() {
+      const purchased = this.$data.purchased;
+      for (let i = 0; i < purchased.length; i++) {
+        const shop = purchased[i];
+        if (shop.shopId == "bagStore") {
+          const goodsList = shop.goodsList;
+          for (let j = 0; j < goodsList.length; j++) {
+            const goods = goodsList[j];
+            if (goods.goodsId == "bag") {
+              return goods.count;
+            }
+          }
+        }
+      }
+    },
+    shopTotal: function() {
+      let that = this;
+      let shopId = "bagStore";
+      let purchased = that.purchased;
+      let total = 0;
+      // let flag = document.getElementById('shopId').checked;
+      // let flag = true;
+      for (let i = 0; i < purchased.length; i++) {
+        const shop = purchased[i];
+        if (shop.shopId == shopId) {
+          let goodsList = shop.goodsList;
+          for (let j = 0; j < goodsList.length; j++) {
+            const goods = goodsList[j];
+            if (goods.selected) {
+              total += goods.goodsTotal;
+            } else {
+              // flag = false;
+            }
+          }
+          // shop.selected = flag;
+          return total;
+        }
+      }
+      this.purchased[""];
     }
   },
   filters: {
-    toString:function(v) {
-      let str = v + '';
-      let arr = str.split('.');
-      if(arr[1]){
-        if(arr[1].length == 1){
-          return str + '0'
-        }else{
-          return str
+    toString: function(v) {
+      let str = v + "";
+      let arr = str.split(".");
+      if (arr[1]) {
+        if (arr[1].length == 1) {
+          return str + "0";
+        } else {
+          return str;
         }
-      }else{
-        return str + '.00'
+      } else {
+        return str + ".00";
       }
     }
   }
