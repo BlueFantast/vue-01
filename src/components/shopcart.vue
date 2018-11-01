@@ -308,7 +308,7 @@ export default {
   },
   methods: {
     reduce: function(shopId, goodsId, goodsCount) {
-      console.log(shopId, goodsId, goodsCount);
+      // console.log(shopId, goodsId, goodsCount);
       if (goodsCount <= 0) {
         return;
       }
@@ -322,7 +322,7 @@ export default {
             if (goods.goodsId == goodsId) {
               goods.goodsCount--;
               goods.goodsTotal = goods.goodsPrice * goods.goodsCount;
-              console.log(goods.goodsCount, goods.goodsTotal);
+              // console.log(goods.goodsCount, goods.goodsTotal);
             }
           }
         }
@@ -339,7 +339,7 @@ export default {
             if (goods.goodsId == goodsId) {
               goods.goodsCount++;
               goods.goodsTotal = goods.goodsPrice * goods.goodsCount;
-              console.log(goods.goodsCount, goods.goodsTotal);
+              // console.log(goods.goodsCount, goods.goodsTotal);
             }
           }
         }
@@ -348,7 +348,6 @@ export default {
     checkBoxShop: function(id) {
       let that = this;
       let shopInput = document.getElementById(id);
-      console.log("checkBox input", shopInput);
       let purchased = that.purchased;
       for (let i = 0; i < purchased.length; i++) {
         let shop = purchased[i];
@@ -364,7 +363,6 @@ export default {
     checkBoxAll: function(id) {
       let that = this;
       let allInput = document.getElementById(id);
-      console.log("all input", allInput);
       let purchased = that.purchased;
       for (let i = 0; i < purchased.length; i++) {
         let shop = purchased[i];
@@ -378,61 +376,39 @@ export default {
     }
   },
   watch: {
-    goodsCount: function(newValue, oldValue) {
-      console.log(newValue, oldValue);
-    },
-    shopTotal: function(newValue, oldValue) {
-      console.log(newValue, oldValue);
+    shopTotal: function(newValue) {
+      // console.log(newValue, oldValue);
       let that = this;
-      // let shopId = "bagStore1";
       let total = 0;
       let purchased = that.purchased;
       for (let i = 0; i < purchased.length; i++) {
         let shop = purchased[i];
-        // if (shop.shopId == shopId) {
-        shop.shopTotal = newValue[i];
-        total += newValue[i];
-        // that.finalPrice = newValue;
-        // }
+        shop.shopTotal = newValue[i] - 0;
+        total += newValue[i] - 0;
       }
       that.finalPrice = total;
     }
   },
   computed: {
-    goodsCount: function() {
-      const purchased = this.purchased;
-      for (let i = 0; i < purchased.length; i++) {
-        const shop = purchased[i];
-        if (shop.shopId == "bagStore") {
-          const goodsList = shop.goodsList;
-          for (let j = 0; j < goodsList.length; j++) {
-            const goods = goodsList[j];
-            if (goods.goodsId == "bag") {
-              return goods.goodsCount;
-            }
-          }
-        }
-      }
-    },
     shopTotal: function() {
       let that = this;
       let purchased = that.purchased;
-      // let total = 0;
       let total = [];
       let flagAll = true;
       for (let i = 0; i < purchased.length; i++) {
         let flag = true;
+        let shopTotal = 0;
         let shop = purchased[i];
         let goodsList = shop.goodsList;
         for (let j = 0; j < goodsList.length; j++) {
           let goods = goodsList[j];
           if (goods.selected) {
-            // total += goods.goodsTotal;
-            total.push(goods.goodsTotal);
+            shopTotal += goods.goodsTotal - 0;
           } else {
             flag = false;
           }
         }
+        total.push(shopTotal);
         shop.selected = flag;
         if (!shop.selected) {
           flagAll = false;
