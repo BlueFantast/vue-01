@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import App from './App.vue'
-import MintUI from 'mint-ui';
+import MintUI from 'mint-ui'
+import Store from './store/index.js'
 import 'mint-ui/lib/style.css'
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(MintUI)
+Vue.use(Vuex)
 
 import Index from './components/index.vue'
 import Classify from './components/classify.vue'
@@ -53,5 +56,6 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  Store,
   render: h => h(App)
 }).$mount('#app')

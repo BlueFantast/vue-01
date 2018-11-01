@@ -47,20 +47,22 @@
   border-radius: 5px;
 }
 
-.title{
+.title {
   padding: 5px 0 0;
 }
 
 .classify-content {
   width: 100%;
+  border-top: 1px solid #eee;
   display: flex;
   flex-wrap: wrap;
 }
 
 .items-container {
   display: block;
-  width: 32.5%;
-  border: 1px solid #eee;
+  width: 33%;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   font-size: 0.9rem;
   color: #333;
   text-align: center;
@@ -73,69 +75,69 @@
 </style>
 
 <script>
-import Header from './header.vue';
-import Tabbar from './tabbar.vue';
+import Header from "./header.vue";
+import Tabbar from "./tabbar.vue";
 
 export default {
-  name: 'Classify',
+  name: "Classify",
   components: {
     Header,
     Tabbar
   },
   data: function() {
     return {
-      selected: 'classify',
-      value:'',
+      selected: "classify",
+      value: "",
       header: {
-        title: '商品分类',
+        title: "商品分类",
         showBack: false,
         showMore: true
       },
       classify: [
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p1.png'),
-          text: '服装饰品'
+          id: "index",
+          imgUrl: require("../assets/images/p1.png"),
+          text: "服装饰品"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p2.png'),
-          text: '家居日常'
+          id: "index",
+          imgUrl: require("../assets/images/p2.png"),
+          text: "家居日常"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p3.png'),
-          text: '精品鞋履'
+          id: "index",
+          imgUrl: require("../assets/images/p3.png"),
+          text: "精品鞋履"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p4.png'),
-          text: '手机数码'
+          id: "index",
+          imgUrl: require("../assets/images/p4.png"),
+          text: "手机数码"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p1.png'),
-          text: '个人护理'
+          id: "index",
+          imgUrl: require("../assets/images/p1.png"),
+          text: "个人护理"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p2.png'),
-          text: '户外运动'
+          id: "index",
+          imgUrl: require("../assets/images/p2.png"),
+          text: "户外运动"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p3.png'),
-          text: '妈咪宝贝'
+          id: "index",
+          imgUrl: require("../assets/images/p3.png"),
+          text: "妈咪宝贝"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p4.png'),
-          text: '家用电器'
+          id: "index",
+          imgUrl: require("../assets/images/p4.png"),
+          text: "家用电器"
         },
         {
-          id: 'index',
-          imgUrl: require('../assets/images/p1.png'),
-          text: '休闲零食'
+          id: "index",
+          imgUrl: require("../assets/images/p1.png"),
+          text: "休闲零食"
         }
       ]
     };

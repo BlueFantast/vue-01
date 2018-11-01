@@ -28,7 +28,9 @@ export default {
 }
 
 .header .mint-header{
+  /* width: calc(100% - 20px); */
   font-size: 1rem;
+
 }
 
 </style>
