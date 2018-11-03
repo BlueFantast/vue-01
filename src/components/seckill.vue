@@ -34,7 +34,7 @@
                             </div>
                             <div class="buy-now">
                                 <p class="price">
-                                    ￥{{item.price || 100}}
+                                    ￥{{item.price | toString}}
                                 </p>
                                 <button class="buy" size="default" type="default" disabled="false" >立即购买</button>
                             </div>
