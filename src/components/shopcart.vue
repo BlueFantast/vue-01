@@ -228,6 +228,7 @@
 
 <script>
 import Header from "./header.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Shopcart",
@@ -244,6 +245,9 @@ export default {
         showBack: true,
         showMore: true
       },
+      // purchased: this.$store.getters['chart/purchased'],
+      // checkAll: this.$store.getters['chart/checkAll'],
+      // finalPrice: this.$store.getters['chart/finalPrice']
       purchased: [
         {
           shopId: "bagStore1",
@@ -306,9 +310,45 @@ export default {
       finalPrice: 0
     };
   },
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("created");
+    this.renderDataFromStore();
+  },
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  mounted() {
+    console.log("mounted");
+  },
+  beforeUpdate() {
+    console.log("beforeUpdata");
+  },
+  updated() {
+    console.log("updata");
+    this.$store.commit({
+      type: "chart/updataPurchased",
+      data: this.purchased
+    });
+    this.$store.commit({
+      type: "chart/updataCheckAll",
+      data: this.checkAll
+    });
+    this.$store.commit({
+      type: "chart/updataFinalPrice",
+      data: this.finalPrice
+    });
+  },
+  beforeDestroy() {
+    console.log("beforeDestroy");
+  },
+  destroyed() {
+    console.log("destroyed");
+  },
   methods: {
     reduce: function(shopId, goodsId, goodsCount) {
-      // console.log(shopId, goodsId, goodsCount);
       if (goodsCount <= 0) {
         return;
       }
@@ -322,7 +362,6 @@ export default {
             if (goods.goodsId == goodsId) {
               goods.goodsCount--;
               goods.goodsTotal = goods.goodsPrice * goods.goodsCount;
-              // console.log(goods.goodsCount, goods.goodsTotal);
             }
           }
         }
@@ -339,7 +378,6 @@ export default {
             if (goods.goodsId == goodsId) {
               goods.goodsCount++;
               goods.goodsTotal = goods.goodsPrice * goods.goodsCount;
-              // console.log(goods.goodsCount, goods.goodsTotal);
             }
           }
         }
@@ -373,6 +411,17 @@ export default {
           goods.selected = allInput.checked;
         }
       }
+    },
+    renderDataFromStore: function() {
+      let that = this;
+
+      let purchased = that.$store.getters["chart/purchased"];
+      let checkAll = that.$store.getters["chart/checkAll"];
+      let finalPrice = that.$store.getters["chart/finalPrice"];
+      purchased && (that.purchased = that.$store.getters["chart/purchased"]);
+      checkAll && (that.checkAll = that.$store.getters["chart/checkAll"]);
+      finalPrice && (that.finalPrice = that.$store.getters["chart/finalPrice"]);
+      console.log("renderDataFromStore");
     }
   },
   watch: {
@@ -390,6 +439,11 @@ export default {
     }
   },
   computed: {
+    // ...mapGetters({
+    //   purchased: "chart/purchased",
+    //   checkAll: "chart/checkAll",
+    //   finalPrice: "chart/finalPrice"
+    // }),
     shopTotal: function() {
       let that = this;
       let purchased = that.purchased;
@@ -418,20 +472,6 @@ export default {
       return total;
     }
   },
-  filters: {
-    // toString: function(v) {
-    //   let str = v + "";
-    //   let arr = str.split(".");
-    //   if (arr[1]) {
-    //     if (arr[1].length == 1) {
-    //       return str + "0";
-    //     } else {
-    //       return str;
-    //     }
-    //   } else {
-    //     return str + ".00";
-    //   }
-    // }
-  }
+  filters: {}
 };
 </script>
