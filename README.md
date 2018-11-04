@@ -1,5 +1,5 @@
 # vue-01
-vue移动商城，技术栈：vue,vue-router,vue-resource,vuex,mint-ui,nodejs,koa,moogodb
+H5商城，技术栈：vue,vue-router,axios,vuex,mint-ui,nodejs,koa,moogodb
 
 # work-01
 
